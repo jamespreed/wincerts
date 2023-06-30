@@ -202,10 +202,10 @@ class CertStore(wincertstore.CertSystemStore):
         self.certs: List[Tuple[str]]
         super().__init__(storename)
 
-    def iter_store_certs(self) -> Generator[PKCS12Ext, None, None]:
+    def iter_pkcs12(self) -> Generator[PKCS12Ext, None, None]:
         """
         Iterates over all certificate objects in this Windows Certificates
-        Store.
+        Store as PKCS12Ext objects.
         """
         cert_ctx_pointer = wincertstore.CertEnumCertificatesInStore(self._hStore, None)
 
