@@ -120,7 +120,7 @@ class PKCS12Ext(OpenSSL.crypto.PKCS12):
 
     def __repr__(self) -> str:
         n = self.__class__.__name__
-        fn = self.friendly_name
+        fn = self.get_friendlyname()
         i = self.cert_issuer
         e = self.cert_expired
         k = self.has_private_key
