@@ -295,7 +295,7 @@ class CertStore(wincertstore.CertSystemStore):
 
         # this always has a leading 8 bytes of b'\x07\x02\x00\x00\x00\xa4\x00\x00'
         # might be an OID tag?
-        pkcs8_bytes = self._win_privkeyblob_to_pkcs8(privkey_blob_bytes)
+        pkcs8_bytes = self._win_privkeyblob_to_pkcs8(privkey_blob_bytes[8:])
         return pkcs8_bytes
 
     @staticmethod
