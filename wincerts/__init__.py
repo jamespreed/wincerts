@@ -92,6 +92,7 @@ class PKCS12Ext(OpenSSL.crypto.PKCS12):
                  public_key_cert: bytes,
                  private_key: bytes = b'',
                  friendly_name: str = '',
+                 name: str = ''
                  ) -> None:
         """
         Creates a PKCS12 archive using a public key certificate and optional
@@ -101,8 +102,10 @@ class PKCS12Ext(OpenSSL.crypto.PKCS12):
             public_key_cert - (bytes) the bytes of ASN.1 public key certificate.
             private_key - (bytes) the bytes of the ASN.1 private key.
             friendly_name - (str) friendly name for the public key certificate.
+            name - (str) certificate common name.
         """
         super().__init__()
+        self.name = name
         if friendly_name:
             self.set_friendlyname(friendly_name.encode('utf8'))
         if public_key_cert:
@@ -211,12 +214,12 @@ class CertStore(wincertstore.CertSystemStore):
 
         while cert_ctx_pointer:
             cert_ctx = cert_ctx_pointer[0]
-            # name = self._get_display_name(cert_ctx)
+            name = self._get_display_name(cert_ctx)
             friendly_name = self._get_friendly_name(cert_ctx)
             public_key_cert = cert_ctx.get_encoded()
             private_key = self._get_private_key(cert_ctx)
 
-            yield PKCS12Ext(public_key_cert, private_key, friendly_name)
+            yield PKCS12Ext(public_key_cert, private_key, friendly_name, name)
 
             cert_ctx_pointer = wincertstore.CertEnumCertificatesInStore(
                 self._hStore,
