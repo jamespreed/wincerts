@@ -173,7 +173,7 @@ class PKCS12Ext(OpenSSL.crypto.PKCS12):
         else:
             return set()
         flags = asn1crypto.x509.KeyUsage.load(ext.get_data()).native
-        return {KeyUsage(f).value for f in flags}
+        return {KeyUsage[f].value for f in flags}
 
     def create_ssl_context(self,
                            tls_method: int = OpenSSL.SSL.TLS_CLIENT_METHOD,
