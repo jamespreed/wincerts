@@ -11,7 +11,12 @@ Here is how you can create an SSL/TLS context using a certificate (with private 
 import wincerts
 
 my_store = wincerts.CertStore('My')
+for pkcs12 in my_store.iter_pkcs12():
+    if not pkcs12.cert_expired and pkcs12.has_private_key and 'digitalSignature' in pkcs12.cert_keyusages:
+        print('Valid certificate found')
+        break
 
+ssl_ctx = pkcs12.create_ssl_context()
 ```
 
 ## Reference Documentation
