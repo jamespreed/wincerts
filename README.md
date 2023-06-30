@@ -22,6 +22,6 @@ ssl_ctx = pkcs12.create_ssl_context()
 ## Reference Documentation
 The references to the source docs for getting this together. 
 
-[CERT_CONTEXT structure](https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/ns-wincrypt-cert_context)
-[CertGetNameStringW function (wincrypt.h)](https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/nf-wincrypt-certgetnamestringw)
-[Cryptograhic API](https://referencesource.microsoft.com/#System/security/system/security/cryptography/cryptoapi.cs)
+- [CERT_CONTEXT structure](https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/ns-wincrypt-cert_context)
+- [CertGetNameStringW function (wincrypt.h)](https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/nf-wincrypt-certgetnamestringw)
+- [Cryptograhic API](https://referencesource.microsoft.com/#System/security/system/security/cryptography/cryptoapi.cs)
