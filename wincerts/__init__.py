@@ -335,5 +335,5 @@ class CertStore(wincertstore.CertSystemStore):
         for i, component in enumerate(der_components):
             seq.setComponentByPosition(i, pyasn1.type.univ.Integer(component))
 
-        der_bytes = der_encoder.encode(seq)
+        der_bytes = pyasn1.codec.der.encoder.encode(seq)
         return der_bytes
