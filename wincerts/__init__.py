@@ -123,12 +123,13 @@ class PKCS12Ext(OpenSSL.crypto.PKCS12):
 
     def __repr__(self) -> str:
         n = self.__class__.__name__
+        cn = self.name
         fn = self.get_friendlyname()
         i = self.cert_issuer
         e = self.cert_expired
         k = self.has_private_key
         repr_ = (
-            f'<{n} friendly_name={fn!r}, expired={e}, '
+            f'<{n} name={cn!r}, friendly_name={fn!r}, expired={e}, '
             f'has_private_key={k}, cert_issuer={i!r}>'
         )
         return repr_
@@ -231,7 +232,7 @@ class CertStore(wincertstore.CertSystemStore):
         """
         Returns the dispaly name of a certificate context.
         """
-        type_ = wincertstore.CERT_NAME_SIMPLE_DIPLAY_TYPE
+        type_ = wincertstore.CERT_NAME_SIMPLE_DISPLAY_TYPE
         cbsize = CertGetNameStringW(cert_ctx, type_, 0, None, None, 0)
         buf = wincertstore.create_unicode_buffer(cbsize)
         cbsize = CertGetNameStringW(cert_ctx, type_, 0, None, buf, cbsize)
