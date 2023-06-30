@@ -107,6 +107,8 @@ class PKCS12Ext(OpenSSL.crypto.PKCS12):
         super().__init__()
         self.name = name
         if friendly_name:
+            # clean up unprintable chars
+            friendly_name = ''.join([c for c in friendly_name if repr(c)[1]!='\\'])
             self.set_friendlyname(friendly_name.encode('utf8'))
         if public_key_cert:
             x509_cert = OpenSSL.crypto.load_certificate(
