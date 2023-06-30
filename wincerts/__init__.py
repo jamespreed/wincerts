@@ -49,7 +49,7 @@ CryptGetUserKey.argtypes = [
 CryptExportKey = advapi32.CryptExportKey
 CryptExportKey.restype = BOOL
 CryptExportKey.argtypes = [
-    HCRYPTKEY, HCRYPTKEY, DWORD, DWORD, POINTER(BYTE), POINTER(BYTE),
+    HCRYPTKEY, HCRYPTKEY, DWORD, DWORD, POINTER(BYTE), POINTER(DWORD),
 ]
 
 CryptAcquireCertPrivKey = crypt32.CryptAcquireCertificatePrivateKey
