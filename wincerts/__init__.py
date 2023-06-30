@@ -320,7 +320,7 @@ class CertStore(wincertstore.CertSystemStore):
             raise NotImplementedError('Only RSA 2048 is currently available.')
 
         _, _, pe, m, p1, p2, e1, e2, c, e = [
-            private_key_blob[ix1, ix2] for ix1, ix2 in zip(indices, indices[1:])
+            private_key_blob[ix1: ix2] for ix1, ix2 in zip(indices, indices[1:])
         ]
 
         if not m:
